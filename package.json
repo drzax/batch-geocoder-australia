@@ -15,7 +15,11 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
+    "@types/latlon-geohash": "^2.0.0",
     "geocoder": "github:abcnews/geocoder",
+    "latlon-geohash": "^2.0.0",
+    "metaphone": "^2.0.0",
+    "minisearch": "^4.0.3",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.0",
     "sass": "^1.50.0",

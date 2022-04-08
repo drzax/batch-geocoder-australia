@@ -1,4 +1,4 @@
-import geocode, { type GeocodeResult } from 'geocoder';
+import { geocode, type GeocodeResult } from '$lib/geocoder';
 
 export const post = async ({ request }) => {
 	const addressField = (await request.formData()).get('addresses') as string;
@@ -6,7 +6,6 @@ export const post = async ({ request }) => {
 
 	const results = await addresses.reduce<Promise<GeocodeResult[]>>(async (acc, address, i) => {
 		const memo = await acc;
-		console.log('i, address :>> ', i, address);
 		const result =
 			address.length > 3
 				? await geocode(address, 1).catch((err) => {
