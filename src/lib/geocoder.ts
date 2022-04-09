@@ -54,8 +54,6 @@ const knownGroups = new Set<string>(groups);
 let currentGroup: string | null = null;
 let currentGroupData: string | null = null;
 
-let fetchController = new AbortController();
-
 const miniSearch = new MiniSearch<SearchIndexDocument>({ fields: ['address'] });
 let searchIndexDocuments: SearchIndexDocument[] = [];
 let currentSearchIndexKey: string | null = null;
@@ -77,11 +75,9 @@ function loadGroupData(group: string): Promise<string> {
 			resolve(currentGroupData);
 			return;
 		}
-		fetchController.abort(); // abort any existing requests
-		fetchController = new AbortController();
 		currentGroup = group;
 		let url = `https://www.abc.net.au/res/sites/news-projects/geocoder/data/202111/${group}.txt.gz`;
-		fetch(url, { signal: fetchController.signal })
+		fetch(url)
 			.then((response) => {
 				response.text().then((data) => {
 					currentGroupData = data;
